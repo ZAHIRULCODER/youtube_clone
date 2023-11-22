@@ -15,10 +15,10 @@ const SearchBar = () => {
 			await axios.get(YOUTUBE_SEARCH_API_URL + searchQuery);
 
 			// console.log(YOUTUBE_SEARCH_API_URL + searchQuery);
-			console.log(response.data.items);
+			// console.log(response.data.items);
 
 			window.location.href = `/results?search_query=${searchQuery}`;
-			// = (`/results?search_query=${searchQuery}`)
+		
 		} catch (error) {
 			console.log(`Fetching search results failed: ${error}`);
 		}
