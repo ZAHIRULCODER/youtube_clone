@@ -3,13 +3,11 @@ import axios from "axios";
 import { YOUTUBE_SEARCH_API_URL } from "../constants";
 import { useAutoSugestion } from "../hooks/useAutoSuggestion";
 import AutoSuggestionContainer from "./AutoSuggestionContainer";
-import { Link, useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const { suggestions } = useAutoSugestion(searchQuery);
 	const [showSuggestions, setShowSuggestions] = useState(false);
-	const navigate = useNavigate();
 
 	const handleSearchSubmit = async (e) => {
 		e.preventDefault();
@@ -17,16 +15,17 @@ const SearchBar = () => {
 			await axios.get(YOUTUBE_SEARCH_API_URL + searchQuery);
 
 			// console.log(YOUTUBE_SEARCH_API_URL + searchQuery);
-			// console.log(response.data.items);
+			console.log(response.data.items);
 
-			navigate(`/results?search_query=${searchQuery}`);
+			window.location.href = `/results?search_query=${searchQuery}`;
+			// = (`/results?search_query=${searchQuery}`)
 		} catch (error) {
 			console.log(`Fetching search results failed: ${error}`);
 		}
 	};
 
 	return (
-		<div className="relative ">
+		<div className="relative">
 			<form onSubmit={handleSearchSubmit} className="flex justify-center">
 				<input
 					value={searchQuery}
@@ -46,7 +45,7 @@ const SearchBar = () => {
 			</form>
 			{showSuggestions ? (
 				<div className="flex flex-col ml-[267px] rounded-2xl p-3 w-1/2 absolute border shadow-2xl  bg-white z-50 cursor-default">
-					{suggestions?.length !== 0
+					{suggestions?.length > 0
 						? suggestions.map((suggestion, index) => (
 								<AutoSuggestionContainer
 									key={index + 99 * 8.895}

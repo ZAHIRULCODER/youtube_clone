@@ -9,7 +9,4 @@ export const YOUTUBE_SEARCH_API_URL = `https://youtube.googleapis.com/youtube/v3
 	import.meta.env.VITE_YOUTUBE_API_KEY
 }&q=`;
 
-
 export const OFFSET_LIVE_CHAT = 50;
-
-
