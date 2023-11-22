@@ -44,7 +44,7 @@ const SearchBar = () => {
 				</button>
 			</form>
 			{showSuggestions ? (
-				<div className="flex flex-col ml-[267px] rounded-2xl p-3 w-1/2 absolute border shadow-2xl  bg-white z-50 cursor-default">
+				<div className="flex flex-col ml-[267px] rounded-2xl w-1/2 absolute border shadow-2xl  bg-white z-50 cursor-default">
 					{suggestions?.length > 0
 						? suggestions.map((suggestion, index) => (
 								<AutoSuggestionContainer

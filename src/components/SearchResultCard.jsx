@@ -2,7 +2,14 @@ import React from "react";
 import { parseVideoAge } from "../utils/parseVideoAge";
 
 const SearchResultCard = ({ snippet }) => {
-	const { title, publishedAt, description, channelTitle, thumbnails } = snippet;
+	const {
+		title,
+		publishedAt,
+		description,
+		channelTitle,
+		thumbnails,
+		channelId, // will use this later to fetch 
+	} = snippet;
 
 	const uploadDate = parseVideoAge(publishedAt);
 

@@ -16,7 +16,7 @@ const AutoSuggestionContainer = ({
 						setSearchQuery(suggestion);
 						setShowSuggestions(false);
 					}}
-					className="py-2 hover:bg-gray-200 rounded-2xl">
+					className="py-2 p-3 hover:bg-gray-200 rounded-2xl">
 					<span className="mx-1 mr-4">🔍</span>
 					{suggestion}
 				</div>
