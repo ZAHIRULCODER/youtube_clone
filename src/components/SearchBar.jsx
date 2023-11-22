@@ -18,7 +18,6 @@ const SearchBar = () => {
 			// console.log(response.data.items);
 
 			window.location.href = `/results?search_query=${searchQuery}`;
-		
 		} catch (error) {
 			console.log(`Fetching search results failed: ${error}`);
 		}
@@ -31,7 +30,7 @@ const SearchBar = () => {
 					value={searchQuery}
 					onChange={(e) => setSearchQuery(e.target.value)}
 					onFocus={() => setShowSuggestions(true)}
-					// onBlur={() => setTimeout(() => setShowSuggestions(false), 120)} // to handle the click on the suggestion
+					onBlur={() => setTimeout(() => setShowSuggestions(false), 120)} // to handle the click on the suggestion
 					className="border border-black rounded-l-full w-1/2 p-2 pl-14"
 					type="text"
 					placeholder="Search"
@@ -50,7 +49,6 @@ const SearchBar = () => {
 								<AutoSuggestionContainer
 									key={index + 99 * 8.895}
 									suggestion={suggestion}
-									setShowSuggestions={setShowSuggestions}
 									setSearchQuery={setSearchQuery}
 								/>
 						  ))
