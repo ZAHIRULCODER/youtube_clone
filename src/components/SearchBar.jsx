@@ -31,7 +31,7 @@ const SearchBar = () => {
 					value={searchQuery}
 					onChange={(e) => setSearchQuery(e.target.value)}
 					onFocus={() => setShowSuggestions(true)}
-					onBlur={() => setTimeout(() => setShowSuggestions(false), 120)} // to handle the click on the suggestion
+					// onBlur={() => setTimeout(() => setShowSuggestions(false), 120)} // to handle the click on the suggestion
 					className="border border-black rounded-l-full w-1/2 p-2 pl-14"
 					type="text"
 					placeholder="Search"
