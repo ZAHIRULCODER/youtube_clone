@@ -1,5 +1,6 @@
 import App from "../App";
 import Body from "../components/Body";
+import Error from "../components/Error";
 import MainContainer from "../components/MainContainer";
 import SearchResult from "../components/SearchResult";
 import VideoContainer from "../components/VideoContainer";
@@ -10,7 +11,7 @@ const appRouter = createBrowserRouter([
 	{
 		path: "/",
 		element: <App />,
-		errorElement: <div>Not Found</div>,
+		errorElement: <Error />,
 		children: [
 			{
 				path: "/",
