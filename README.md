@@ -1,6 +1,6 @@
 # Youtube Clone using Youtube API
 
-### Deployed Link: [Youtube Clone (Click Here)]()
+### Deployed Link: [Youtube Clone (Click Here)](https://youtube-clone-sk-zahirul-islam.vercel.app/)
 
 ## This project is a Youtube clone that utilizes the Youtube API to replicate most of the functionalities of the popular video-sharing platform. Inspired by the features found on YouTube. This project is developed as a learning exercise and is not intended for commercial use.
 
