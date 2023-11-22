@@ -8,7 +8,7 @@
 
 - Live Chat with Mocking API Polling: Implemented a live chat feature with simulated real-time updates through API polling, ensuring users see new messages without manual refreshes.
 - ShimmerUi - Implemented shimmer while fetching the data
-- Nested Comments like Reddit: Enabled nested comments, facilitating threaded discussions similar to Reddit's comment structure.
+- Nested Comments like Reddit: Enabled nested comments, facilitating threaded discussions similar to Reddit's comment structure (Used Recursion for this).
 - YouTube Suggestions Bar with Caching: Integrated a suggestions bar, similar to YouTube, offering relevant search suggestions as users type. Implemented caching to improve responsiveness and reduce redundant API requests.
 - Optimized Search Bar with Debouncing: Designed a search bar with optimized performance using debouncing to minimize unnecessary API calls.
 - Collapsible Sidebar using Redux Toolkit: Utilized Redux Toolkit to manage a collapsible sidebar, allowing users to expand or collapse sections.
