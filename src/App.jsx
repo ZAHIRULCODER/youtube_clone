@@ -5,12 +5,12 @@ import { Provider } from "react-redux";
 import { Outlet } from "react-router-dom";
 
 const App = () => {
-	return (
-		<Provider store={store}>
-			<Header />
-			<Outlet />
-		</Provider>
-	);
+   return (
+      <Provider store={store}>
+         <Header />
+         <Outlet />
+      </Provider>
+   );
 };
 
 export default App;

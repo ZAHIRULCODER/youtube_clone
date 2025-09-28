@@ -8,28 +8,28 @@ import WatchVideoPage from "../components/WatchVideoPage";
 import { createBrowserRouter } from "react-router-dom";
 
 const appRouter = createBrowserRouter([
-	{
-		path: "/",
-		element: <App />,
-		errorElement: <Error />,
-		children: [
-			{
-				path: "/",
-				element: <Body />,
-				children: [
-					{
-						path: "/",
-						element: <MainContainer />,
-						children: [
-							{ path: "/", element: <VideoContainer /> },
-							{ path: "results", element: <SearchResult /> },
-						],
-					},
-					{ path: "watch", element: <WatchVideoPage /> },
-				],
-			},
-		],
-	},
+   {
+      path: "/",
+      element: <App />,
+      errorElement: <Error />,
+      children: [
+         {
+            path: "/",
+            element: <Body />,
+            children: [
+               {
+                  path: "/",
+                  element: <MainContainer />,
+                  children: [
+                     { path: "/", element: <VideoContainer /> },
+                     { path: "results", element: <SearchResult /> },
+                  ],
+               },
+               { path: "watch", element: <WatchVideoPage /> },
+            ],
+         },
+      ],
+   },
 ]);
 
 export default appRouter;
