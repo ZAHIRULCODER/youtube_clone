@@ -7,14 +7,18 @@ export default function VideoContainer() {
    const { videos } = useMainPageVideo();
 
    return videos.length === 0 ? (
-      <ShimmerUI />
+      <ShimmerUI variant="grid" />
    ) : (
-      <div className="flex flex-wrap p-6 min-w-fit ">
+      <section className="grid gap-8 px-1 pb-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
          {videos.map((video) => (
-            <Link key={video?.id} to={`/watch?v=${video.id}`}>
+            <Link
+               key={video?.id}
+               to={`/watch?v=${video.id}`}
+               className="block justify-self-center transition hover:-translate-y-1 hover:no-underline"
+            >
                <VideoCard {...video} />
             </Link>
          ))}
-      </div>
+      </section>
    );
 }

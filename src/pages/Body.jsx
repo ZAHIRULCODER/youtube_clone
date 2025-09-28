@@ -3,9 +3,11 @@ import { SiderBar } from "../components/SiderBar";
 
 export default function Body() {
    return (
-      <div className="flex">
+      <main className="mx-auto flex w-full gap-4 px-3 py-6 sm:px-6">
          <SiderBar />
-         <Outlet />
-      </div>
+         <section className="flex-1">
+            <Outlet />
+         </section>
+      </main>
    );
 }

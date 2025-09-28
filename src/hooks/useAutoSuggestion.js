@@ -5,50 +5,52 @@ import { cacheResult } from "../reduxtoolkit/slices/cacheSuggestionSlice";
 import axios from "axios";
 
 export const useAutoSugestion = (urlSearchQuery) => {
-	const dispatch = useDispatch();
-	const cache = useSelector((store) => store.cacheSuggestion.suggestions);
-	const [suggestions, setSuggestions] = useState([]);
+   const dispatch = useDispatch();
+   const cache = useSelector((store) => store.cacheSuggestion.suggestions);
+   const [suggestions, setSuggestions] = useState([]);
 
-	/**
-	 * cache = {
-	 * 	"react": ["react tutorial", "react js", "react native"],
-	 * }
-	 *
-	 * searchQuery = "react"
-	 */
+   /**
+    * cache = {
+    * 	"react": ["react tutorial", "react js", "react native"],
+    * }
+    *
+    * searchQuery = "react"
+    */
 
-	useEffect(() => {
-		//debouncing
-		const timer = setTimeout(() => {
-			// if the suggestions present in cache then show dont do api call
-			if (cache[urlSearchQuery]) {
-				setSuggestions(cache[urlSearchQuery]);
-			} else {
-				// if the suggestions are not in cache call this
-				getSearchSuggestions();
-			}
-		}, 210);
+   useEffect(() => {
+      if (!urlSearchQuery?.trim()) {
+         setSuggestions([]);
+         return;
+      }
 
-		return () => {
-			clearTimeout(timer);
-		};
-	}, [urlSearchQuery]);
+      //debouncing
+      const timer = setTimeout(() => {
+         // if the suggestions present in cache then show dont do api call
+         const query = urlSearchQuery.trim();
+         if (cache[query]) {
+            setSuggestions(cache[query]);
+         } else {
+            // if the suggestions are not in cache call this
+            getSearchSuggestions(query);
+         }
+      }, 210);
 
-	const getSearchSuggestions = async () => {
-		try {
-			// console.log("Api", searchQuery);
-			const response = await axios.get(
-				YOUTUBE_SUGGESTION_API_URL + urlSearchQuery
-			);
-			// console.log( response.data[1]);
-			setSuggestions(response.data[1]);
+      return () => {
+         clearTimeout(timer);
+      };
+   }, [urlSearchQuery]);
 
-			// update cache  with the new suggestions
-			dispatch(cacheResult({ [urlSearchQuery]: response.data[1] }));
-		} catch (error) {
-			console.log(`Error in fetching suggestions ${error}`);
-		}
-	};
+   const getSearchSuggestions = async (query) => {
+      try {
+         const response = await axios.get(YOUTUBE_SUGGESTION_API_URL + query);
+         setSuggestions(response.data[1]);
 
-	return { suggestions };
+         // update cache  with the new suggestions
+         dispatch(cacheResult({ [query]: response.data[1] }));
+      } catch (error) {
+         console.log(`Error in fetching suggestions ${error}`);
+      }
+   };
+
+   return { suggestions };
 };

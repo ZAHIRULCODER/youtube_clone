@@ -3,9 +3,9 @@ import { ButtonList } from "../components/ButtonList";
 
 export default function MainContainer() {
    return (
-      <div>
+      <section className="flex flex-col gap-6 pb-12">
          <ButtonList />
          <Outlet />
-      </div>
+      </section>
    );
 }

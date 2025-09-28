@@ -6,8 +6,12 @@ import store from "./reduxtoolkit/store/store";
 export default function App() {
    return (
       <Provider store={store}>
-         <Header />
-         <Outlet />
+         <div className="flex min-h-screen flex-col bg-[#f8fafc]">
+            <Header />
+            <div className="flex-1 pb-12">
+               <Outlet />
+            </div>
+         </div>
       </Provider>
    );
 }

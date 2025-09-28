@@ -17,98 +17,111 @@ import { TfiCup } from "react-icons/tfi";
 import { BsLightbulb } from "react-icons/bs";
 import { FaPersonDressBurst } from "react-icons/fa6";
 import { MdOutlinePodcasts } from "react-icons/md";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import { toggleMenu } from "../reduxtoolkit/slices/menuSlice";
 
 export function SiderBar() {
    const isSideBarMenuOpen = useSelector((store) => store.menu.isMenuOpen);
+   const location = useLocation();
+   const dispatch = useDispatch();
 
    // if the menu is not open, return null (Early return)
    if (!isSideBarMenuOpen) return null;
 
-   return (
-      <div className=" min-w-fit p-6 shadow-lg">
-         <ul>
-            <Link to="/">
-               <li className="flex items-center font-medium py-2 ">
-                  <IoMdHome size={25} className="mr-1" />
-                  Home
-               </li>
-            </Link>
+   const sections = [
+      {
+         title: "Main",
+         items: [
+            { icon: IoMdHome, label: "Home", to: "/" },
+            { icon: SiYoutubeshorts, label: "Shorts" },
+            { icon: MdSubscriptions, label: "Subscriptions" },
+         ],
+      },
+      {
+         title: "You",
+         items: [
+            { icon: CgProfile, label: "Your channel" },
+            { icon: MdHistory, label: "History" },
+            { icon: BiSolidVideos, label: "Your videos" },
+            { icon: MdOutlineWatchLater, label: "Watch later" },
+            { icon: AiOutlineLike, label: "Liked videos" },
+         ],
+      },
+      {
+         title: "Explore",
+         items: [
+            { icon: IoMdTrendingUp, label: "Trending" },
+            { icon: AiOutlineShopping, label: "Shopping" },
+            { icon: IoIosMusicalNote, label: "Music" },
+            { icon: MdMovieEdit, label: "Movies" },
+            { icon: SiPodcastindex, label: "Live" },
+            { icon: SiYoutubegaming, label: "Gaming" },
+            { icon: LuNewspaper, label: "News" },
+            { icon: TfiCup, label: "Sports" },
+            { icon: BsLightbulb, label: "Learning" },
+            { icon: FaPersonDressBurst, label: "Fashion & Beauty" },
+            { icon: MdOutlinePodcasts, label: "Podcasts" },
+         ],
+      },
+   ];
 
-            <li className="flex items-center font-medium py-2">
-               <SiYoutubeshorts size={22} className="mr-1" />
-               Shorts
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <MdSubscriptions size={22} className="mr-1" />
-               Subscriptions
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <CgProfile size={22} className="mr-1" />
-               Your channel
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <MdHistory size={25} className="mr-1" />
-               History
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <BiSolidVideos size={22} className="mr-1" />
-               Your videos
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <MdOutlineWatchLater size={25} className="mr-1" />
-               Watch later
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <AiOutlineLike size={23} className="mr-1" />
-               Liked videos
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <IoMdTrendingUp size={23} className="mr-1" />
-               Trending
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <AiOutlineShopping size={25} className="mr-1" />
-               Shopping
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <IoIosMusicalNote size={23} className="mr-1" />
-               Music
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <MdMovieEdit size={23} className="mr-1" />
-               Movies
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <SiPodcastindex size={22} className="mr-1" />
-               Live
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <SiYoutubegaming size={22} className="mr-1" />
-               Gaming
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <LuNewspaper size={23} className="mr-1" />
-               News
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <TfiCup size={22} className="mr-1" />
-               Sports
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <BsLightbulb size={22} className="mr-1" />
-               Learning
-            </li>
-            <li className="flex  items-center font-medium py-2 ">
-               <FaPersonDressBurst size={25} className="mr-1" />
-               Fashion & Beauty
-            </li>
-            <li className="flex items-center font-medium py-2">
-               <MdOutlinePodcasts size={25} className="mr-1" />
-               Podcasts
-            </li>
-         </ul>
-      </div>
+   return (
+      <>
+         <button
+            type="button"
+            aria-label="Close menu"
+            onClick={() => dispatch(toggleMenu())}
+            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm md:hidden"
+         />
+         <aside className="fixed inset-y-0 left-0 z-50 w-72 shrink-0 overflow-y-auto bg-white/95 pb-10 pt-24 shadow-xl md:sticky md:top-[72px] md:h-[calc(100vh-72px)] md:bg-transparent md:pb-6 md:pr-4 md:pt-4 md:shadow-none">
+            <nav className="panel space-y-8 p-4">
+               {sections.map((section) => (
+                  <div key={section.title}>
+                     <p className="px-2 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-400">
+                        {section.title}
+                     </p>
+                     <ul className="mt-3 space-y-1">
+                        {section.items.map((item) => (
+                           <li key={item.label}>
+                              <SidebarEntry
+                                 {...item}
+                                 active={item.to === location.pathname}
+                              />
+                           </li>
+                        ))}
+                     </ul>
+                  </div>
+               ))}
+            </nav>
+         </aside>
+      </>
+   );
+}
+
+function SidebarEntry({ icon: Icon, label, to, active }) {
+   const baseClasses =
+      "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium transition";
+   const stateClasses = active
+      ? "bg-neutral-900 text-white shadow-elevated"
+      : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900";
+
+   if (to) {
+      return (
+         <Link to={to} className={`${baseClasses} ${stateClasses}`}>
+            <Icon size={20} />
+            <span>{label}</span>
+         </Link>
+      );
+   }
+
+   return (
+      <button
+         type="button"
+         className={`${baseClasses} ${stateClasses} w-full text-left`}
+      >
+         <Icon size={20} />
+         <span>{label}</span>
+      </button>
    );
 }
