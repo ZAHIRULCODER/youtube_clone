@@ -1,10 +1,17 @@
-function Button({ name }) {
+import { useState } from "react";
+
+function Button({ name, isActive, onClick }) {
+   const base = "chip transition-all duration-200";
+   const active = isActive
+      ? "bg-neutral-900 text-white shadow-elevated"
+      : "hover:bg-neutral-100";
+
    return (
       <button
          type="button"
-         className={`chip ${
-            name === "All" ? "bg-neutral-900 text-white shadow-elevated" : ""
-         }`}
+         aria-pressed={isActive}
+         onClick={onClick}
+         className={`${base} ${active}`}
       >
          {name}
       </button>
@@ -12,6 +19,7 @@ function Button({ name }) {
 }
 
 export function ButtonList() {
+   const [activeFilter, setActiveFilter] = useState("All");
    const listOfButtons = [
       "All",
       "Music",
@@ -33,14 +41,19 @@ export function ButtonList() {
    ];
 
    return (
-      <div className="relative">
-         <div className="pointer-events-none absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-[#f8fafc] to-transparent" />
-         <nav className="no-scrollbar flex items-center gap-3 overflow-x-auto px-3 py-4 sm:px-0">
+      <div className="relative isolate overflow-hidden">
+         <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-[#f8fafc] via-[#f8fafc]/80 to-transparent" />
+         <nav className="no-scrollbar flex items-center gap-3 overflow-x-auto px-10 py-4">
             {listOfButtons.map((button) => (
-               <Button key={button} name={button} />
+               <Button
+                  key={button}
+                  name={button}
+                  isActive={button === activeFilter}
+                  onClick={() => setActiveFilter(button)}
+               />
             ))}
          </nav>
-         <div className="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-[#f8fafc] to-transparent" />
+         <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-[#f8fafc] via-[#f8fafc]/80 to-transparent" />
       </div>
    );
 }
