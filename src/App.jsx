@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { Header } from "../components/Header";
-import store from "../reduxtoolkit/store/store";
+import { Header } from "./components/Header";
+import store from "./reduxtoolkit/store/store";
 
 export default function App() {
    return (

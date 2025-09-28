@@ -1,4 +1,4 @@
-import App from "../pages/App";
+import App from "../App";
 import Body from "../pages/Body";
 import Error from "../pages/Error";
 import MainContainer from "../pages/MainContainer";
