@@ -1,10 +1,10 @@
-import App from "../App";
-import Body from "../components/Body";
-import Error from "../components/Error";
-import MainContainer from "../components/MainContainer";
-import SearchResult from "../components/SearchResult";
-import VideoContainer from "../components/VideoContainer";
-import WatchVideoPage from "../components/WatchVideoPage";
+import App from "../pages/App";
+import Body from "../pages/Body";
+import Error from "../pages/Error";
+import MainContainer from "../pages/MainContainer";
+import SearchResult from "../pages/SearchResult";
+import VideoContainer from "../pages/VideoContainer";
+import WatchVideoPage from "../pages/WatchVideoPage";
 import { createBrowserRouter } from "react-router-dom";
 
 const appRouter = createBrowserRouter([
