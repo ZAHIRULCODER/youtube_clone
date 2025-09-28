@@ -33,11 +33,6 @@ export function ButtonList() {
       "Machine Learning",
       "JavaScript",
       "Python",
-      "Data Visualization",
-      "Tailwind CSS",
-      "Next.js",
-      "Productivity",
-      "Inspiration",
    ];
 
    return (
